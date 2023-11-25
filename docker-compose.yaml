@@ -1,16 +1,13 @@
-version: ""
 services:
   web:
     build: .
     ports:
       - "80:3000"
     command: npm start
-    develop:
+    x-develop:
       watch:
-        - action: sync
-          path: ./src
-          target: /tmp/hello-world/
+        - path: ./web
+          target: /app/web/
           ignore:
-            - ./src/node_modules/
-        - action: rebuild
-          path: package.json
+            - ./web/node_modules
+          action: rebuild
