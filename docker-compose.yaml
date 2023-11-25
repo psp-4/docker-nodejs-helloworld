@@ -6,8 +6,8 @@ services:
     command: npm start
     x-develop:
       watch:
-        - path: ./web
-          target: /app/web/
+        - path: ./src
+          target: /app/src/
           ignore:
-            - ./web/node_modules
+            - ./src/node_modules
           action: rebuild
