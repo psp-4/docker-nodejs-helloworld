@@ -3,7 +3,7 @@ on:
   push:
     branches: api-testing-playwright
 env:
-  ROOT_PATH: '${{github_workspace}}'
+  ROOT_PATH: '${{github.workspace}}'
   
 jobs:
   Testing:
