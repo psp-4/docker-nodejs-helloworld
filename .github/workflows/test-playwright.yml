@@ -22,16 +22,16 @@ jobs:
 
     - name: Installing dependencies
       run: npm install
-      working-directory: '${{ROOT_PATH}}'
+      working-directory: '${{env.ROOT_PATH}}'
 
     - name: Installing Playwright Browsers
       run: npx playwright install
-      working-directory: '${{ROOT_PATH}}'
+      working-directory: '${{env.ROOT_PATH}}'
 
     - name: Starting Server
       run: npm start
-      working-directory: '${{ROOT_PATH}}'
+      working-directory: '${{env.ROOT_PATH}}'
 
     - name: Running tests
       run: npm test
-      working-directory: '${{ROOT_PATH}}'
+      working-directory: '${{env.ROOT_PATH}}'
