@@ -25,7 +25,7 @@ jobs:
       working-directory: '${{env.ROOT_PATH}}'
 
     - name: Installing Playwright Browsers
-      run: npx playwright install
+      run: yarn playwright install --with-deps
       working-directory: '${{env.ROOT_PATH}}'
 
     - name: Starting Server
