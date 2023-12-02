@@ -33,7 +33,7 @@ jobs:
       run: aws sts get-caller-identity
 
     - name: Installing AWS CLI
-      run: sudo apt update && sudo apt install aws-cli -y
+      run: sudo apt update && sudo snap install aws-cli -y
 
     - name: Installing dependencies
       run: npm install
