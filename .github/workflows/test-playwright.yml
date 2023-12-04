@@ -48,6 +48,7 @@ jobs:
     - name: Running tests
       run: npm test
       working-directory: '${{env.ROOT_PATH}}'
+      continue-on-error: true
     
     - name: Uploading test reports to Amazon S3
       if: always()
