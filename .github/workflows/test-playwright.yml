@@ -30,8 +30,8 @@ jobs:
         role-to-assume: arn:aws:iam::${{secrets.AWS_ACCOUNT_ID}}:role/github-actions-access
         aws-region: us-east-2
         
-    - name: Loading AWS Command Line Interface
-      uses: aws-actions/aws-cli@v2
+    - name: Installing AWS CLI
+      run: sudo apt update && sudo apt install -y awscli
 
     - name: Installing dependencies
       run: npm install
@@ -54,5 +54,5 @@ jobs:
       run: |
        aws s3 cp "${{env.ROOT_PATH}}/playwright-report/index.html" s3://helloworld-api-test-reports/playwright-report/'${{env.REPORT_NAME}}'
 
-    - name: Outputting report public IP
+    - name: Public URL of Report
       run: echo "https://helloworld-api-test-reports.s3.us-east-2.amazonaws.com/playwright-report/${{env.REPORT_NAME}}"
