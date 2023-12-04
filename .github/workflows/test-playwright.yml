@@ -4,7 +4,6 @@ on:
     branches: api-testing-playwright
 env:
   ROOT_PATH: '${{github.workspace}}'
-  REPORT_NAME: ''
   
 jobs:
   Testing:
@@ -49,13 +48,14 @@ jobs:
       run: npm test
       working-directory: '${{env.ROOT_PATH}}'
 
-    - name: Generating Timestamps
-      run: echo '$(date +"%Y%m%d_%H%M%S.html")' >> ${{env.REPORT_NAME}}
+    - name: Generating report name
+      run: |
+       REPORT_NAME = $(date +"%Y%m%d_%H%M%S_.html")
     
     - name: Uploading test reports to Amazon S3
       if: always()
       run: |
-       aws s3 cp "${{env.ROOT_PATH}}/playwright-report/index.html" s3://helloworld-api-test-reports/playwright-report/'${{env.REPORT_NAME}}'
+       aws s3 cp "${{env.ROOT_PATH}}/playwright-report/index.html" s3://helloworld-api-test-reports/playwright-report/$REPORT_NAME
 
     - name: Public URL of Report
-      run: echo "https://helloworld-api-test-reports.s3.us-east-2.amazonaws.com/playwright-report/${{env.REPORT_NAME}}"
+      run: echo "https://helloworld-api-test-reports.s3.us-east-2.amazonaws.com/playwright-report/$REPORT_NAME"
