@@ -4,7 +4,7 @@ on:
     branches: api-testing-playwright
 env:
   ROOT_PATH: '${{github.workspace}}'
-  REPORT_NAME: '${{github.run_id}}.html'
+  REPORT_NAME: ''
   
 jobs:
   Testing:
@@ -48,6 +48,9 @@ jobs:
     - name: Running tests
       run: npm test
       working-directory: '${{env.ROOT_PATH}}'
+
+    - name: Generating Timestamps
+      run: echo '$(date +"%Y%m%d_%H%M%S.html")' >> ${{env.REPORT_NAME}}
     
     - name: Uploading test reports to Amazon S3
       if: always()
