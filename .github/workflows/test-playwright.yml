@@ -54,5 +54,15 @@ jobs:
       run: |
        aws s3 cp "${{env.ROOT_PATH}}/playwright-report/index.html" s3://helloworld-api-test-reports/playwright-report/report_${{env.REPORT_ID}}.html
 
-    - name: Public URL of Report
+    - name: URL of Playwright Report
       run: echo "https://helloworld-api-test-reports.s3.us-east-2.amazonaws.com/playwright-report/report_${{env.REPORT_ID}}.html"
+
+    - name: Generate Allure Reports
+      run: npx allure generate --clean
+
+    - name: Uploading Allure reports to S3
+      run: |
+       aws s3 cp ${{env.ROOT_PATH}}/allure-report/* s3://helloworld-api-test-reports/allure-reports/
+
+    - name: URL of Allure Report
+      run: echo "https://helloworld-api-test-reports.s3.us-east-2.amazonaws.com/allure-reports/index.html"
