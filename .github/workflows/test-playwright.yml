@@ -63,8 +63,8 @@ jobs:
 
     - name: Uploading Allure reports to S3
       run: |
-       aws s3 put-object --bucket helloworld-api-test-reports --key allure-reports/report_${{env.REPORT_ID}}
-       aws s3 sync "${{env.ROOT_PATH}}/allure-report/" s3://helloworld-api-test-reports/allure-reports/report_${{env.REPORT_ID}}/
+       aws s3api put-object --bucket helloworld-api-test-reports --key allure-reports/report_${{env.REPORT_ID}}/
+       aws s3 sync ${{env.ROOT_PATH}}/allure-report s3://helloworld-api-test-reports/allure-reports/report_${{env.REPORT_ID}}/
 
     - name: URL of Allure Report
       run: echo "https://helloworld-api-test-reports.s3.us-east-2.amazonaws.com/allure-reports/report_${{env.REPORT_ID}}/index.html"
