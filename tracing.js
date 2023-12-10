@@ -8,7 +8,7 @@ const { Resource } = require('@opentelemetry/resources');
 const { SemanticResourceAttributes } = require('@opentelemetry/semantic-conventions');
 
 const exporterOptions = {
-   url: 'http://localhost:3301/v1/traces'
+   url: 'http://localhost:4318/v1/traces'
    }
    
 const traceExporter = new OTLPTraceExporter(exporterOptions);
